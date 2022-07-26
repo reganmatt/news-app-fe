@@ -10,25 +10,16 @@ import Sortby from './Sortby'
 function Articles() {
     const [articles, setArticles] = useState()
     const [isLoading, setIsLoading] = useState(true)
-    let params= useParams()
+    let urlParams= useParams()
 
     useEffect(() => {
         axios
-        .get('https://mr-news-api.herokuapp.com/api/articles')
+        .get('https://mr-news-api.herokuapp.com/api/articles', {params: {topic: urlParams.topic}})
         .then((response) => {
-         if (params.topic ){
-          const filteredArticles = response.data.articles.filter(
-            (article) => article.topic === params.topic 
-          )
-          setArticles(filteredArticles)
+          setArticles(response.data.articles)
           setIsLoading(false)
-          }else {
-            setArticles(response.data.articles)
-            setIsLoading(false)
-          }
-        })
-    }, [params.topic])
-
+    }, [])
+  })
     if (isLoading){
         return <p>Loading...</p>
     }
