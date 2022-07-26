@@ -2,25 +2,24 @@ import axios from 'axios'
 import {useState, useEffect} from 'react' 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import {useParams} from 'react-router-dom'
 
 
 import Sortby from './Sortby'
 
 function Articles() {
     const [articles, setArticles] = useState()
-    // const [topic, setTopic] = useState()
     const [isLoading, setIsLoading] = useState(true)
+    let urlParams= useParams()
 
     useEffect(() => {
         axios
-        .get('https://mr-news-api.herokuapp.com/api/articles')
+        .get('https://mr-news-api.herokuapp.com/api/articles', {params: {topic: urlParams.topic}})
         .then((response) => {
-         
-            setArticles(response.data.articles)
-            setIsLoading(false)
-        })
+          setArticles(response.data.articles)
+          setIsLoading(false)
     }, [])
-
+  })
     if (isLoading){
         return <p>Loading...</p>
     }
