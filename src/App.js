@@ -20,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Articles />} />
           <Route path="/topics/:topic" element={<Articles />} />
+          <Route path="/articles/:article_id" element={<Articles />} />
         </Routes>
       </div>
     </BrowserRouter>
