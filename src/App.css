@@ -99,13 +99,21 @@ padding: 1rem
 
  .singleArticle{
   font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+ }
+
+ .articleBody{
+  max-width: 65%;
+  margin: auto;
+
+  padding: 10px;
  }
 
  .singleMeta{
   color: blue;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
  }
  
 

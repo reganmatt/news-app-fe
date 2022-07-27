@@ -18,14 +18,19 @@ function SingleArticle() {
         })
       }, [params.article_id])
       
+      if (params.article_id > 36) {
+          return <p>Article Not Found!</p>
+      }
+      
       if (isLoading){
         return <p>Loading...</p>
-      }
+    }
+    
 
   return (
     <article className='singleArticle'>
       <h2>{article.title}</h2>
-      <p>{article.body}</p>
+      <p className='articleBody'>{article.body}</p>
       <div className='singleMeta'>
       <p>Author: {article.author}</p>
       <p>Comments: {article.comment_count}</p>
