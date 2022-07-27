@@ -21,13 +21,14 @@ function SingleArticle() {
       if (params.article_id > 36) {
           return <p>Article Not Found!</p>
       }
-      
+
       if (isLoading){
         return <p>Loading...</p>
     }
-    
-
+   
+  
   return (
+    
     <article className='singleArticle'>
       <h2>{article.title}</h2>
       <p className='articleBody'>{article.body}</p>
@@ -36,9 +37,12 @@ function SingleArticle() {
       <p>Comments: {article.comment_count}</p>
       <p>{article.created_at.substring(0,10)}</p>
       <p>Topic: {article.topic}</p>
-      <p>Votes: {article.votes}</p>
       </div>
-      <img src='https://pbs.twimg.com/profile_images/1333392601450426370/x_DT51WI_400x400.jpg' alt='northcoders' />
+      <div className='voteBox'>
+      <img className='upVote'onClick={(() => console.log('clicked up'))} src='https://pbs.twimg.com/profile_images/1333392601450426370/x_DT51WI_400x400.jpg' alt='northcoders' />
+      <p className='singleMeta'>Votes: {article.votes}</p>
+      <img className='downVote'onClick={(() => console.log('clicked down'))} src='https://pbs.twimg.com/profile_images/1333392601450426370/x_DT51WI_400x400.jpg' alt='northcoders' />
+      </div>
     </article>
   )
 }
