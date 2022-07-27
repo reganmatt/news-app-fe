@@ -93,10 +93,19 @@ padding: 1rem
  }
 }
 
-
  .Login{
   grid-area: login;
  }
 
+ .singleArticle{
+  font-family: Arial, Helvetica, sans-serif;
+ }
+
+ .singleMeta{
+  color: blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ }
  
 

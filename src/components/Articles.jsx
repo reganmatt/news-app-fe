@@ -2,8 +2,9 @@ import axios from 'axios'
 import {useState, useEffect} from 'react' 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import {useParams, useNavigate} from 'react-router-dom'
-import {useRef} from 'react'
+import {useParams, Link} from 'react-router-dom'
+
+
 
 
 import Sortby from './Sortby'
@@ -13,11 +14,6 @@ function Articles() {
     const [isLoading, setIsLoading] = useState(true)
 
     let urlParams= useParams()
-    let navigate = useNavigate()
-    const ref=useRef(null)
-
-    
-    
     
     useEffect(() => {
       axios
@@ -27,15 +23,12 @@ function Articles() {
         setIsLoading(false)
       }, [])
     })
+    
     if (isLoading){
       return <p>Loading...</p>
     }
     
-    const routeChange = () => {
-      console.log(ref)
-      let path = `/`
-      navigate(path)
-    }
+    
    
       return (
     <div >
@@ -43,7 +36,7 @@ function Articles() {
       <ul className='articleList'>
             {articles.map((article) => {
                 return (
-                    <li >
+                    <li key={article.article_id}>
                     <Card className='articleCard' key={article.article_id} >
                       <Card.Img className='articleImg' variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRICHBL7gIbmeGhAFSAbUh-CVgCboh7xzYwgg&usqp=CAU" alt={article.article_id} />
                       <Card.Body>
@@ -51,7 +44,9 @@ function Articles() {
                         <Card.Text>
                           {article.body.substring(0,63) + '...'}
                         </Card.Text>
-                        <Button ref={ref} onClick={routeChange} variant="primary">Read</Button>
+                        <Link to= {`/article/${article.article_id}`}>
+                        <Button variant="primary">Read</Button>
+                        </Link>
                         <div className='articleMeta'>
                         <p>{article.author} | {article.created_at.substring(0,10)}  | votes:{article.votes} |  comments:{article.comment_count}</p>
                         </div>
